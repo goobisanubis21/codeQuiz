@@ -1,4 +1,3 @@
-//arry of objects to hold questions with choices and the correct answer
 var questions = [
     {
         question: "Commonly used data types DO NOT include:",
