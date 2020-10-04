@@ -2,14 +2,14 @@
 var questions = [
     {
         question: "Commonly used data types DO NOT include:",
-        choices: ["strings", "booleans", "alerts", "numbers"],
-        answer: "alerts",
+        choices: ["Strings", "Booleans", "Alerts", "Numbers"],
+        answer: "Alerts",
     },
     {
         question:
             "The condition in an if / else statement is enclosed within ____.",
-        choices: ["quotes", "curly brackets", "parentheses", "square brackets"],
-        answer: "parentheses",
+        choices: ["Quotes", "Curly Brackets", "Parentheses", "Square Brackets"],
+        answer: "Parentheses",
     },
 ];
 
@@ -19,12 +19,13 @@ var optionListEl = document.querySelector("#option-list");
 var questionResultEl = document.querySelector("#question-result");
 var timerEl = document.querySelector("#timer");
 
+
 //variables to set the question index, 
 var questionIndex = 0;
 //the correct answer counts,
 var correctCount = 0;
 //the amount of time on the clock,
-var time = 10;
+var time = 11000;
 //and the amount of time it takes for the countdown to descend
 var intervalId;
 
@@ -33,6 +34,9 @@ function endQuiz() {
     clearInterval(intervalId);
     var body = document.body;
     body.innerHTML = "Game over, You scored " + correctCount;
+    // var gameOver = document.querySelector("#game-over");
+    // window.location.href = ("gameover.html");
+    // gameOver.innerHTML = "Game over, You scored " + correctCount;
     setTimeout(showHighScore, 2);
 }
 
@@ -93,15 +97,18 @@ function renderQuestion() {
         return;
     }
 
+    //setting the amount of time is takes to count down, in this case its set to per second or 1000 ms
     intervalId = setInterval(updateTime, 1000);
     questionEl.textContent = questions[questionIndex].question;
 
     optionListEl.innerHTML = "";
     questionResultEl.innerHTML = "";
 
+    //setting variables for choices and the length of the choices
     var choices = questions[questionIndex].choices;
     var choicesLenth = choices.length;
 
+    //for loop to render the array of choices
     for (var i = 0; i < choicesLenth; i++) {
         var questionListItem = document.createElement("li");
         questionListItem.textContent = choices[i];
