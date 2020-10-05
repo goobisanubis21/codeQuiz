@@ -1,3 +1,4 @@
+// creation of array hold objects for the questions, choices and correst answer
 var questions = [
     {
         question: "Commonly used data types DO NOT include:",
@@ -30,7 +31,7 @@ var questions = [
     }
 ];
 
-//variables to call upon html ids
+// variables to call upon html ids
 var questionEl = document.querySelector("#question");
 var optionListEl = document.querySelector("#option-list");
 var questionResultEl = document.querySelector("#question-result");
@@ -41,31 +42,37 @@ highscoreTab.setAttribute("id", "highscore-tab");
 highscoreTab.textContent = "Highscores";
 document.body.appendChild(highscoreTab);
 
-//creating a highscore button
+// creating a highscore button
 highscoreTab.addEventListener("click", highscorePage);
 
-//function to render highscore page when clicking on highscore buttion
+// function to render highscore page when clicking on highscore buttion
 function highscorePage() {
+
     // clears body of webpage
     document.body.textContent = "";
+
+    // creation of h1 element an id for styling
     var highscoreTitle = document.createElement("h1");
     highscoreTitle.setAttribute("id", "highscore-title");
     highscoreTitle.textContent = "Highscores:";
     document.body.appendChild(highscoreTitle);
-    //setting variable of local storage's scores
+
+    // setting variable of local storage's scores
     var high_scores = localStorage.getItem("scores");
-    //returns highscore string as an object
+
+    // returns highscore string as an object
     high_scores = JSON.parse(high_scores);
-    //sorts all names and their scores in decsending order
+
+    // sorts all names and their scores in decsending order
     high_scores.sort(function (a, b) {
         return b.score - a.score;
     });
 
-    //creating an ul in the dom and setting it to the variable contentUL
+    // creating an ul in the dom and setting it to the variable contentUL
     var contentUL = document.createElement("ul");
     contentUL.setAttribute("id", "content-ul");
 
-    //loops through the highscore to create the list items of names and scores
+    // loops through the highscore to create the list items of names and scores
     for (var i = 0; i < high_scores.length; i++) {
         var contentLI = document.createElement("li");
         contentLI.textContent =
@@ -89,16 +96,19 @@ function highscorePage() {
 }
 
 
-//variables to set the question index, 
+// variables to set the question index, 
 var questionIndex = 0;
-//the correct answer counts,
+
+// the correct answer counts,
 var correctCount = 0;
-//the amount of time on the clock,
+
+// the amount of time on the clock,
 var time = 11000;
-//and the amount of time it takes for the countdown to descend
+
+// and the amount of time it takes for the countdown to descend
 var intervalId;
 
-//function to end the quiz and call upon the function to display the highscore
+// function to end the quiz and call upon the function to display the highscore
 function endQuiz() {
     clearInterval(intervalId);
     var body = document.body;
@@ -106,40 +116,44 @@ function endQuiz() {
     setTimeout(showHighScore, 2);
 }
 
-//function for the highscore
+// function for the highscore
 function showHighScore() {
-    //prompts for players name
+    // prompts for players name
     var name = prompt("Please enter your name");
-    //setting variable of local storage's scores
+
+    var user = {
+        name: name,
+        score: correctCount
+    }
+
+    // setting variable of local storage's scores
     var high_scores = localStorage.getItem("scores");
 
-    //if statement to check if high scores for user exsits. if not highscore is set to empty array, if so then high score is then set to whats stored as an object in the local storage
+    // if statement to check if high scores for user exsits. if not highscore is set to empty array, if so then high score is then set to whats stored as an object in the local storage
     if (!high_scores) {
         high_scores = [];
     } else {
         high_scores = JSON.parse(high_scores);
     }
 
-    //highscores is then updated to new score
-    high_scores.push({ name: name, score: correctCount });
+    high_scores.push(user);
 
-    //stores highscores into local storage as a string
+    // stores highscores into local storage as a string
     localStorage.setItem("scores", JSON.stringify(high_scores));
 
-    //sorts all names and their scores in decsending order
+    // sorts all names and their scores in decsending order
     high_scores.sort(function (a, b) {
         return b.score - a.score;
     });
 
-    //creating an ul in the dom and setting it to the variable contentUL
+    // creating an ul in the dom and setting it to the variable contentUL
     var contentUL = document.createElement("ul");
     contentUL.setAttribute("id", "content-ul");
 
-    //loops through the highscore to create the list items of names and scores
+    // loops through the highscore to create the list items of names and scores
     for (var i = 0; i < high_scores.length; i++) {
         var contentLI = document.createElement("li");
-        contentLI.textContent =
-            "Name: " + high_scores[i].name + " Score: " + high_scores[i].score;
+        contentLI.textContent = "Name: " + high_scores[i].name + " Score: " + high_scores[i].score;
         contentUL.appendChild(contentLI);
     }
 
@@ -168,7 +182,7 @@ function showHighScore() {
 
 }
 
-//function to count down time left in the game
+// function to count down time left in the game
 function updateTime() {
     time--;
     timerEl.textContent = time;
@@ -177,7 +191,7 @@ function updateTime() {
     }
 }
 
-//function to render the current question
+// function to render the current question
 function renderQuestion() {
 
     if (time == 0) {
@@ -185,18 +199,18 @@ function renderQuestion() {
         return;
     }
 
-    //setting the amount of time is takes to count down, in this case its set to per second or 1000 ms
+    // setting the amount of time is takes to count down, in this case its set to per second or 1000 ms
     intervalId = setInterval(updateTime, 1000);
     questionEl.textContent = questions[questionIndex].question;
 
     optionListEl.innerHTML = "";
     questionResultEl.innerHTML = "";
 
-    //setting variables for choices and the length of the choices
+    // setting variables for choices and the length of the choices
     var choices = questions[questionIndex].choices;
     var choicesLenth = choices.length;
 
-    //for loop to render the array of choices
+    // for loop to render the array of choices
     for (var i = 0; i < choicesLenth; i++) {
         var questionListItem = document.createElement("li");
         questionListItem.textContent = choices[i];
@@ -204,7 +218,7 @@ function renderQuestion() {
     }
 }
 
-//function to render the next question in line
+// function to render the next question in line
 function nextQuestion() {
     questionIndex++;
     if (questionIndex === questions.length) {
@@ -213,7 +227,7 @@ function nextQuestion() {
     renderQuestion();
 }
 
-//function to check if chosen answer is the correct one to add a correct point to score
+// function to check if chosen answer is the correct one to add a correct point to score
 function checkAnswer(event) {
     clearInterval(intervalId);
     if (event.target.matches("li")) {
@@ -221,18 +235,19 @@ function checkAnswer(event) {
         if (answer === questions[questionIndex].answer) {
             questionResultEl.textContent = "Correct";
             correctCount++;
-            //if incorrect subtract two seconds from time clock
+            // if incorrect subtract two seconds from time clock
         } else {
             questionResultEl.textContent = "Incorrect";
             time = time - 2;
             timerEl.textContent = time;
         }
     }
-    //allows clock to pause for two seconds inbetween questions
+    // allows clock to pause for two seconds inbetween questions
     setTimeout(nextQuestion, 2000);
 }
 
-//calls the render question function
+// calls the render question function
 renderQuestion();
-//adds and event listener to options listen to store which options is clicked on
+
+// adds and event listener to options listen to store which options is clicked on
 optionListEl.addEventListener("click", checkAnswer);
