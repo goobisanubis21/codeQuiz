@@ -46,7 +46,7 @@ function startGame() {
     // function to start the gameplay
     function letsPlay() {
         // hides start button
-        //questions.style.visibility ="visible";
+        question.style.visibility ="visible";
         startButton.style.visibility = "hidden";
         // variables to call upon html ids
         var questionEl = document.querySelector("#question");
