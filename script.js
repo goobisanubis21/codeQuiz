@@ -5,30 +5,30 @@ var questions = [
         choices: ["Strings", "Booleans", "Alerts", "Numbers"],
         answer: "Alerts",
     },
-    // {
-    //     question:
-    //         "The condition in an if / else statement is enclosed within ____.",
-    //     choices: ["Quotes", "Curly Brackets", "Parentheses", "Square Brackets"],
-    //     answer: "Parentheses",
-    // },
-    // {
-    //     question:
-    //         "Arrays in JavaScript can be used to store ____.",
-    //     choices: ["Numbers and Strings", "Other Arrays", "Booleans", "All of the Above"],
-    //     answer: "All of the Above",
-    // },
-    // {
-    //     question:
-    //         "String values must be enclosed within _____ when being assigned to variables.",
-    //     choices: ["Quotes", "Curly Brackets", "Parentheses", "Square Brackets"],
-    //     answer: "Quotes",
-    // },
-    // {
-    //     question:
-    //         "A very useful tool during development and debugging for printing content to the debugger is ____.",
-    //     choices: ["Javascript", "Terminal/Bash", "For Loops", "Console.log"],
-    //     answer: "Console.log"
-    // }
+    {
+        question:
+            "The condition in an if / else statement is enclosed within ____.",
+        choices: ["Quotes", "Curly Brackets", "Parentheses", "Square Brackets"],
+        answer: "Parentheses",
+    },
+    {
+        question:
+            "Arrays in JavaScript can be used to store ____.",
+        choices: ["Numbers and Strings", "Other Arrays", "Booleans", "All of the Above"],
+        answer: "All of the Above",
+    },
+    {
+        question:
+            "String values must be enclosed within _____ when being assigned to variables.",
+        choices: ["Quotes", "Curly Brackets", "Parentheses", "Square Brackets"],
+        answer: "Quotes",
+    },
+    {
+        question:
+            "A very useful tool during development and debugging for printing content to the debugger is ____.",
+        choices: ["Javascript", "Terminal/Bash", "For Loops", "Console.log"],
+        answer: "Console.log"
+    }
 ];
 
 // call back for funtion to run start game function
