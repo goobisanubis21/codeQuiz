@@ -86,86 +86,97 @@ function startGame() {
             setTimeout(getName, 2);
         }
 
+        // function to create an input field to get the users name and set it equal to name
         function getName() {
             var formEl = document.createElement("form");
             document.body.appendChild(formEl);
             var inputEl = document.createElement("input");
             inputEl.setAttribute("id", "input");
-            inputEl.setAttribute("type", "text");
-            var submit = document.createElement("button");
-            submit.setAttribute("type", "submit");
+            inputEl.setAttribute("placeholder", "Name");
+            var submit = document.createElement("input");
+            submit.setAttribute("id", "btn");
+            submit.setAttribute("value", "Save");
             formEl.appendChild(inputEl);
             formEl.appendChild(submit);
-            name = inputEl.value;
-            showHighScore();
+            submit.addEventListener("click", function () {
+                name = inputEl.value;
+                showHighScore();
+            });
+        }
 
 
-            // function for the highscore
-            function showHighScore() {
-                // prompts for players name
-                //var name = prompt("Please enter your name");
+        // function for the highscore
+        function showHighScore() {
+            // clear the input field
+            document.body.textContent = "";
 
-                var user = {
-                    name: name,
-                    score: correctCount
-                }
+            // create a highscore title
+            var highscoreTitle = document.createElement("h1");
+            highscoreTitle.setAttribute("class", "highscore-title");
+            highscoreTitle.textContent = "Highscores:";
+            document.body.appendChild(highscoreTitle);
 
-                // setting variable of local storage's scores
-                var high_scores = localStorage.getItem("scores");
-
-                // if statement to check if high scores for user exsits. if not highscore is set to empty array, if so then high score is then set to whats stored as an object in the local storage
-                if (!high_scores) {
-                    high_scores = [];
-                } else {
-                    high_scores = JSON.parse(high_scores);
-                }
-
-                high_scores.push(user);
-
-                // stores highscores into local storage as a string
-                localStorage.setItem("scores", JSON.stringify(high_scores));
-
-                // sorts all names and their scores in decsending order
-                high_scores.sort(function (a, b) {
-                    return b.score - a.score;
-                });
-
-                // creating an ul in the dom and setting it to the variable contentUL
-                var contentUL = document.createElement("ul");
-                contentUL.setAttribute("id", "content-ul");
-
-                // loops through the highscore to create the list items of names and scores
-                for (var i = 0; i < high_scores.length; i++) {
-                    var contentLI = document.createElement("li");
-                    contentLI.textContent = "Name: " + high_scores[i].name + " Score: " + high_scores[i].score;
-                    contentUL.appendChild(contentLI);
-                }
-
-                // appends new ul content to the body of the webpage
-                document.body.appendChild(contentUL);
-
-                // creation of clear button
-                var clear = document.createElement("h2");
-                clear.textContent = "Clear Scores";
-                document.body.appendChild(clear);
-
-                // button to clear local storage (highscores)
-                clear.addEventListener("click", function () {
-                    localStorage.clear();
-                    contentUL.style.display = "none";
-                });
-
-                // creation of play again button
-                var goBack = document.createElement("h3");
-                goBack.setAttribute("id", "play-again")
-                goBack.textContent = "Play Again";
-                document.body.appendChild(goBack);
-                goBack.addEventListener("click", function () {
-                    location.reload()
-                });
-
+            // save name and highscore into user object
+            var user = {
+                name: name,
+                score: correctCount
             }
-        };
+
+            // setting variable of local storage's scores
+            var high_scores = localStorage.getItem("scores");
+
+            // if statement to check if high scores for user exsits. if not highscore is set to empty array, if so then high score is then set to whats stored as an object in the local storage
+            if (!high_scores) {
+                high_scores = [];
+            } else {
+                high_scores = JSON.parse(high_scores);
+            }
+
+            high_scores.push(user);
+
+            // stores highscores into local storage as a string
+            localStorage.setItem("scores", JSON.stringify(high_scores));
+
+            // sorts all names and their scores in decsending order
+            high_scores.sort(function (a, b) {
+                return b.score - a.score;
+            });
+
+            // creating an ul in the dom and setting it to the variable contentUL
+            var contentUL = document.createElement("ul");
+            contentUL.setAttribute("id", "content-ul");
+
+            // loops through the highscore to create the list items of names and scores
+            for (var i = 0; i < high_scores.length; i++) {
+                var contentLI = document.createElement("li");
+                contentLI.textContent = "Name: " + high_scores[i].name + " Score: " + high_scores[i].score;
+                contentUL.appendChild(contentLI);
+            }
+
+            // appends new ul content to the body of the webpage
+            document.body.appendChild(contentUL);
+
+            // creation of clear button
+            var clear = document.createElement("h2");
+            clear.textContent = "Clear Scores";
+            document.body.appendChild(clear);
+
+            // button to clear local storage (highscores)
+            clear.addEventListener("click", function () {
+                localStorage.clear();
+                contentUL.style.display = "none";
+            });
+
+            // creation of play again button
+            var goBack = document.createElement("h3");
+            goBack.setAttribute("id", "play-again")
+            goBack.textContent = "Play Again";
+            document.body.appendChild(goBack);
+            goBack.addEventListener("click", function () {
+                location.reload()
+            });
+
+        }
 
         // function to count down time left in the game
         function updateTime() {

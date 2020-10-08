@@ -6,7 +6,7 @@
 
     // creation of h1 element an id for styling
     var highscoreTitle = document.createElement("h1");
-    highscoreTitle.setAttribute("id", "highscore-title");
+    highscoreTitle.setAttribute("class", "highscore-title");
     highscoreTitle.textContent = "Highscores:";
     document.body.appendChild(highscoreTitle);
 

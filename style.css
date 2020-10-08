@@ -69,7 +69,7 @@ body h2 {
     cursor: pointer;
 }
 
-#highscore-title {
+.highscore-title {
     color: rgb(104, 35, 35);
 }
 
@@ -87,7 +87,7 @@ body h2 {
     width: 30%;
     margin: auto;
     font-size: 50px;
-    margin-top: 18%;
+    margin-top: 15%;
     border-radius: 100px;
     cursor: pointer;
     box-shadow: 0 0 0px 10px black;
@@ -111,5 +111,10 @@ body h2 {
 }
 
 #input {
-    width: 200px;
+    width: 150px;
+}
+
+#btn {
+    cursor: pointer;
+    width: 32px;
 }
