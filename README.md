@@ -1,1 +1,4 @@
 # codeQuiz
+code quiz is a 5 question timed quiz that stores your score inside local store that can be accessed through a button named highscores in the upper left hand corner of the website or upon completion of the quiz. The index file starts the quiz with a start button which then renders each question one by one after each answer has been clicked on. If time runs out or there are no more questions left. Theres also a highscore file that has only one purpose and that is to get from local storage the highscores and render them for the user whenever they want to see it.
+
+screenshot : ![image](https://user-images.githubusercontent.com/69410816/95520354-0e528c00-0995-11eb-8102-5a5e9031b012.png)
