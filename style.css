@@ -47,6 +47,10 @@ body h2 {
     width: 30%;
 }
 
+#option-list li:hover {
+    background-color: royalblue;
+}
+
 #game-over {
     font-size: 50px;
 }
@@ -79,13 +83,33 @@ body h2 {
 }
 
 #start-button {
-    background-color: tomato;
+    background-color: red;
     width: 30%;
     margin: auto;
     font-size: 50px;
-    margin-top: 5%;
-    outline: 5px solid black;
+    margin-top: 18%;
     border-radius: 100px;
     cursor: pointer;
+    box-shadow: 0 0 0px 10px black;
     
+}
+
+#start-button:hover {
+    background-color: rgb(57, 112, 25);
+}
+
+#back-btn {
+    position: absolute;
+    top: 0;
+    left: 30px;
+    cursor: pointer;
+    font-weight: 900;
+}
+
+#back-btn:hover {
+    color: red;
+}
+
+#input {
+    width: 200px;
 }
