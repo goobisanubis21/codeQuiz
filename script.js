@@ -73,7 +73,7 @@ function startGame() {
         var correctCount = 0;
 
         // the amount of time on the clock,
-        var time = 60000;
+        var time = 60;
 
         // and the amount of time it takes for the countdown to descend
         var intervalId;
