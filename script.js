@@ -239,7 +239,7 @@ function startGame() {
                 }
             }
             // allows clock to pause for two seconds inbetween questions
-            setTimeout(nextQuestion, 2000);
+            setTimeout(nextQuestion, 0);
         }
 
         // calls the render question function
